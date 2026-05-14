@@ -64,3 +64,39 @@ setup() {
     assert_failure
     assert_output --partial "world"
 }
+
+@test "NARROW_LANGUAGE_EXCLUDE_FILES skips matching file" {
+    echo "unknown_word" > "$TMPDIR/baseline.txt"
+    run env NARROW_LANGUAGE_DICT="$DICT" \
+        NARROW_LANGUAGE_EXCLUDE_FILES="$TMPDIR/baseline.txt" \
+        bash "$SCRIPT" "$TMPDIR/baseline.txt"
+    assert_success
+}
+
+@test "NARROW_LANGUAGE_EXCLUDE_FILES with glob pattern" {
+    echo "unknown_word" > "$TMPDIR/baseline.txt"
+    run env NARROW_LANGUAGE_DICT="$DICT" \
+        NARROW_LANGUAGE_EXCLUDE_FILES="*baseline*" \
+        bash "$SCRIPT" "$TMPDIR/baseline.txt"
+    assert_success
+}
+
+@test "NARROW_LANGUAGE_EXCLUDE_FILES colon-separated patterns" {
+    echo "unknown_word" > "$TMPDIR/skip-me.txt"
+    echo "hello world" > "$TMPDIR/check-me.sh"
+    printf '%s\n' "hello" > "$DICT"
+    run env NARROW_LANGUAGE_DICT="$DICT" \
+        NARROW_LANGUAGE_EXCLUDE_FILES="*skip-me*:*other*" \
+        bash "$SCRIPT" "$TMPDIR/skip-me.txt" "$TMPDIR/check-me.sh"
+    assert_failure
+    refute_output --partial "skip-me"
+    assert_output --partial "world"
+}
+
+@test "NARROW_LANGUAGE_EXCLUDE_FILES empty means no exclusions" {
+    echo "unknown_word" > "$TMPDIR/sample.sh"
+    run env NARROW_LANGUAGE_DICT="$DICT" \
+        NARROW_LANGUAGE_EXCLUDE_FILES="" \
+        bash "$SCRIPT" "$TMPDIR/sample.sh"
+    assert_failure
+}

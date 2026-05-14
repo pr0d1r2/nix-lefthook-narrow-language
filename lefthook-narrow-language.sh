@@ -15,8 +15,23 @@ known=$(sort -u "$DICT")
 exit_code=0
 total_unknown=0
 
+IFS=':' read -ra _nl_exclude_patterns <<<"${NARROW_LANGUAGE_EXCLUDE_FILES:-}"
+
 for file in "$@"; do
     [ -f "$file" ] || continue
+
+    _nl_skip=0
+    for _nl_pat in "${_nl_exclude_patterns[@]}"; do
+        [ -z "$_nl_pat" ] && continue
+        # shellcheck disable=SC2254
+        case "$file" in
+            $_nl_pat)
+                _nl_skip=1
+                break
+                ;;
+        esac
+    done
+    [ "$_nl_skip" -eq 1 ] && continue
 
     words=$(
         grep -oE '[A-Za-z]+' "$file" |
