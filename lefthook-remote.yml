@@ -1,0 +1,403 @@
+---
+pre-commit:
+  commands:
+    narrow-language-nix-compact:
+      priority: 1
+      timeout: 30s
+      glob: "*.nix"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-nix.dic
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.nix$'
+      run: lefthook-narrow-language-compact
+    narrow-language-shell-compact:
+      priority: 1
+      timeout: 30s
+      glob: "*.{sh,bats}"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-shell.dic
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.(sh|bats)$'
+      run: lefthook-narrow-language-compact
+    narrow-language-python-compact:
+      priority: 1
+      timeout: 30s
+      glob: "*.py"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-python.dic
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.py$'
+      run: lefthook-narrow-language-compact
+    narrow-language-markdown-compact:
+      priority: 1
+      timeout: 30s
+      glob: "*.md"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-markdown.dic
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.md$'
+      run: lefthook-narrow-language-compact
+    narrow-language-ruby-compact:
+      priority: 1
+      timeout: 30s
+      glob: "*.rb"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-ruby.dic
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.rb$'
+      run: lefthook-narrow-language-compact
+    narrow-language-javascript-compact:
+      priority: 1
+      timeout: 30s
+      glob: "*.{js,jsx}"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-javascript.dic
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.(js|jsx)$'
+      run: lefthook-narrow-language-compact
+    narrow-language-typescript-compact:
+      priority: 1
+      timeout: 30s
+      glob: "*.{ts,tsx}"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-typescript.dic
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.(ts|tsx)$'
+      run: lefthook-narrow-language-compact
+    narrow-language-erb-compact:
+      priority: 1
+      timeout: 30s
+      glob: "*.erb"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-erb.dic
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.erb$'
+      run: lefthook-narrow-language-compact
+    narrow-language-hcl-compact:
+      priority: 1
+      timeout: 30s
+      glob: "*.hcl"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-hcl.dic
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.hcl$'
+      run: lefthook-narrow-language-compact
+    narrow-language-terraform-compact:
+      priority: 1
+      timeout: 30s
+      glob: "*.tf"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-terraform.dic
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.tf$'
+      run: lefthook-narrow-language-compact
+    narrow-language-css-compact:
+      priority: 1
+      timeout: 30s
+      glob: "*.css"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-css.dic
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.css$'
+      run: lefthook-narrow-language-compact
+    narrow-language-scss-compact:
+      priority: 1
+      timeout: 30s
+      glob: "*.scss"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-scss.dic
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.scss$'
+      run: lefthook-narrow-language-compact
+    narrow-language-other-compact:
+      priority: 1
+      timeout: 30s
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-other.dic
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.(yml|yaml|toml|tcl|json|dic|envrc)$|justfile|Gemfile'
+      run: lefthook-narrow-language-compact
+    narrow-language-nix-freeze:
+      priority: 1
+      timeout: 10s
+      glob: "*.dic"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-nix.dic
+      run: lefthook-narrow-language-freeze
+    narrow-language-shell-freeze:
+      priority: 1
+      timeout: 10s
+      glob: "*.dic"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-shell.dic
+      run: lefthook-narrow-language-freeze
+    narrow-language-python-freeze:
+      priority: 1
+      timeout: 10s
+      glob: "*.dic"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-python.dic
+      run: lefthook-narrow-language-freeze
+    narrow-language-markdown-freeze:
+      priority: 1
+      timeout: 10s
+      glob: "*.dic"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-markdown.dic
+      run: lefthook-narrow-language-freeze
+    narrow-language-ruby-freeze:
+      priority: 1
+      timeout: 10s
+      glob: "*.dic"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-ruby.dic
+      run: lefthook-narrow-language-freeze
+    narrow-language-javascript-freeze:
+      priority: 1
+      timeout: 10s
+      glob: "*.dic"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-javascript.dic
+      run: lefthook-narrow-language-freeze
+    narrow-language-typescript-freeze:
+      priority: 1
+      timeout: 10s
+      glob: "*.dic"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-typescript.dic
+      run: lefthook-narrow-language-freeze
+    narrow-language-erb-freeze:
+      priority: 1
+      timeout: 10s
+      glob: "*.dic"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-erb.dic
+      run: lefthook-narrow-language-freeze
+    narrow-language-hcl-freeze:
+      priority: 1
+      timeout: 10s
+      glob: "*.dic"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-hcl.dic
+      run: lefthook-narrow-language-freeze
+    narrow-language-terraform-freeze:
+      priority: 1
+      timeout: 10s
+      glob: "*.dic"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-terraform.dic
+      run: lefthook-narrow-language-freeze
+    narrow-language-css-freeze:
+      priority: 1
+      timeout: 10s
+      glob: "*.dic"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-css.dic
+      run: lefthook-narrow-language-freeze
+    narrow-language-scss-freeze:
+      priority: 1
+      timeout: 10s
+      glob: "*.dic"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-scss.dic
+      run: lefthook-narrow-language-freeze
+    narrow-language-other-freeze:
+      priority: 1
+      timeout: 10s
+      glob: "*.dic"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-other.dic
+      run: lefthook-narrow-language-freeze
+    narrow-language-nix:
+      priority: 2
+      timeout: 30s
+      glob: "*.nix"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-nix.dic
+      run: lefthook-narrow-language {staged_files}
+    narrow-language-shell:
+      priority: 2
+      timeout: 30s
+      glob: "*.{sh,bats}"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-shell.dic
+      run: lefthook-narrow-language {staged_files}
+    narrow-language-python:
+      priority: 2
+      timeout: 30s
+      glob: "*.py"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-python.dic
+      run: lefthook-narrow-language {staged_files}
+    narrow-language-markdown:
+      priority: 2
+      timeout: 30s
+      glob: "*.md"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-markdown.dic
+      run: lefthook-narrow-language {staged_files}
+    narrow-language-ruby:
+      priority: 2
+      timeout: 30s
+      glob: "*.rb"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-ruby.dic
+      run: lefthook-narrow-language {staged_files}
+    narrow-language-javascript:
+      priority: 2
+      timeout: 30s
+      glob: "*.{js,jsx}"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-javascript.dic
+      run: lefthook-narrow-language {staged_files}
+    narrow-language-typescript:
+      priority: 2
+      timeout: 30s
+      glob: "*.{ts,tsx}"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-typescript.dic
+      run: lefthook-narrow-language {staged_files}
+    narrow-language-erb:
+      priority: 2
+      timeout: 30s
+      glob: "*.erb"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-erb.dic
+      run: lefthook-narrow-language {staged_files}
+    narrow-language-hcl:
+      priority: 2
+      timeout: 30s
+      glob: "*.hcl"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-hcl.dic
+      run: lefthook-narrow-language {staged_files}
+    narrow-language-terraform:
+      priority: 2
+      timeout: 30s
+      glob: "*.tf"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-terraform.dic
+      run: lefthook-narrow-language {staged_files}
+    narrow-language-css:
+      priority: 2
+      timeout: 30s
+      glob: "*.css"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-css.dic
+      run: lefthook-narrow-language {staged_files}
+    narrow-language-scss:
+      priority: 2
+      timeout: 30s
+      glob: "*.scss"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-scss.dic
+      run: lefthook-narrow-language {staged_files}
+    narrow-language-other:
+      priority: 2
+      timeout: 30s
+      exclude:
+        - "*.nix"
+        - "*.sh"
+        - "*.bats"
+        - "*.py"
+        - "*.rb"
+        - "*.js"
+        - "*.jsx"
+        - "*.ts"
+        - "*.tsx"
+        - "*.erb"
+        - "*.hcl"
+        - "*.tf"
+        - "*.css"
+        - "*.scss"
+        - "*.md"
+        - "*.dic"
+        - "flake.lock"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-other.dic
+      run: lefthook-narrow-language {staged_files}
+
+pre-push:
+  commands:
+    narrow-language-nix:
+      timeout: 30s
+      glob: "*.nix"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-nix.dic
+      run: lefthook-narrow-language {push_files}
+    narrow-language-shell:
+      timeout: 30s
+      glob: "*.{sh,bats}"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-shell.dic
+      run: lefthook-narrow-language {push_files}
+    narrow-language-python:
+      timeout: 30s
+      glob: "*.py"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-python.dic
+      run: lefthook-narrow-language {push_files}
+    narrow-language-markdown:
+      timeout: 30s
+      glob: "*.md"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-markdown.dic
+      run: lefthook-narrow-language {push_files}
+    narrow-language-ruby:
+      timeout: 30s
+      glob: "*.rb"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-ruby.dic
+      run: lefthook-narrow-language {push_files}
+    narrow-language-javascript:
+      timeout: 30s
+      glob: "*.{js,jsx}"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-javascript.dic
+      run: lefthook-narrow-language {push_files}
+    narrow-language-typescript:
+      timeout: 30s
+      glob: "*.{ts,tsx}"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-typescript.dic
+      run: lefthook-narrow-language {push_files}
+    narrow-language-erb:
+      timeout: 30s
+      glob: "*.erb"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-erb.dic
+      run: lefthook-narrow-language {push_files}
+    narrow-language-hcl:
+      timeout: 30s
+      glob: "*.hcl"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-hcl.dic
+      run: lefthook-narrow-language {push_files}
+    narrow-language-terraform:
+      timeout: 30s
+      glob: "*.tf"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-terraform.dic
+      run: lefthook-narrow-language {push_files}
+    narrow-language-css:
+      timeout: 30s
+      glob: "*.css"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-css.dic
+      run: lefthook-narrow-language {push_files}
+    narrow-language-scss:
+      timeout: 30s
+      glob: "*.scss"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-scss.dic
+      run: lefthook-narrow-language {push_files}
+    narrow-language-other:
+      timeout: 30s
+      exclude:
+        - "*.nix"
+        - "*.sh"
+        - "*.bats"
+        - "*.py"
+        - "*.rb"
+        - "*.js"
+        - "*.jsx"
+        - "*.ts"
+        - "*.tsx"
+        - "*.erb"
+        - "*.hcl"
+        - "*.tf"
+        - "*.css"
+        - "*.scss"
+        - "*.md"
+        - "*.dic"
+        - "flake.lock"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-other.dic
+      run: lefthook-narrow-language {push_files}
