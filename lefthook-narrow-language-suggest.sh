@@ -13,11 +13,7 @@ if [ $# -eq 0 ]; then
     exit 0
 fi
 
-tmpdir=$(mktemp -d)
-trap 'rm -rf "$tmpdir"' EXIT
-
-printf 'SET UTF-8\n' >"$tmpdir/nl.aff"
-printf '0\n' >"$tmpdir/nl.dic"
+known=$(sort -u "$DICT")
 
 all_unknown=""
 
@@ -34,11 +30,7 @@ for file in "$@"; do
 
     [ -z "$words" ] && continue
 
-    unknown=$(
-        echo "$words" |
-            hunspell -d "$tmpdir/nl" -p "$DICT" -l |
-            sort -u
-    ) || true
+    unknown=$(comm -23 <(echo "$words") <(echo "$known")) || true
 
     if [ -n "$unknown" ]; then
         all_unknown=$(printf '%s\n%s' "$all_unknown" "$unknown")

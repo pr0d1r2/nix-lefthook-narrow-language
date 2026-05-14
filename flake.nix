@@ -50,7 +50,6 @@
             gnugrep
             gnused
             gawk
-            hunspell
           ];
           text = builtins.readFile ./lefthook-narrow-language.sh;
         };
@@ -85,7 +84,6 @@
             gnugrep
             gnused
             gawk
-            hunspell
             wordnet
           ];
           text = builtins.readFile ./lefthook-narrow-language-suggest.sh;
@@ -103,6 +101,7 @@
               self.packages.${system}.compact
               self.packages.${system}.freeze
               self.packages.${system}.suggest
+              pkgs.wordnet
             ];
             shellHook = builtins.replaceStrings [ "@BATS_LIB_PATH@" ] [ "${shells.batsWithLibs}" ] (
               builtins.readFile ./dev.sh
