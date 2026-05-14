@@ -10,11 +10,7 @@ if [ ! -f "$DICT" ]; then
     exit 1
 fi
 
-tmpdir=$(mktemp -d)
-trap 'rm -rf "$tmpdir"' EXIT
-
-printf 'SET UTF-8\n' >"$tmpdir/nl.aff"
-printf '0\n' >"$tmpdir/nl.dic"
+known=$(sort -u "$DICT")
 
 exit_code=0
 total_unknown=0
@@ -32,11 +28,7 @@ for file in "$@"; do
 
     [ -z "$words" ] && continue
 
-    unknown=$(
-        echo "$words" |
-            hunspell -d "$tmpdir/nl" -p "$DICT" -l |
-            sort -u
-    ) || true
+    unknown=$(comm -23 <(echo "$words") <(echo "$known")) || true
 
     if [ -n "$unknown" ]; then
         count=$(echo "$unknown" | wc -l | tr -d ' ')

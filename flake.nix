@@ -50,7 +50,6 @@
             gnugrep
             gnused
             gawk
-            hunspell
           ];
           text = builtins.readFile ./lefthook-narrow-language.sh;
         };
