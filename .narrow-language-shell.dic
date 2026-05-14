@@ -1,6 +1,5 @@
 add
 added
-aff
 after
 all
 alpha
@@ -78,7 +77,6 @@ handles
 has
 hello
 hooks
-hunspell
 ifs
 include
 init
@@ -100,7 +98,6 @@ matches
 matching
 missing
 mkdir
-mktemp
 modification
 name
 narrow
@@ -180,7 +177,6 @@ then
 tmpdir
 total
 touch
-trap
 true
 underscores
 unique
@@ -190,7 +186,6 @@ upper
 user
 using
 usr
-utf
 when
 while
 with

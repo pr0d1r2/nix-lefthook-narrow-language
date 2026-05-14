@@ -84,7 +84,6 @@
             gnugrep
             gnused
             gawk
-            hunspell
             wordnet
           ];
           text = builtins.readFile ./lefthook-narrow-language-suggest.sh;
@@ -102,7 +101,6 @@
               self.packages.${system}.compact
               self.packages.${system}.freeze
               self.packages.${system}.suggest
-              pkgs.hunspell
               pkgs.wordnet
             ];
             shellHook = builtins.replaceStrings [ "@BATS_LIB_PATH@" ] [ "${shells.batsWithLibs}" ] (
