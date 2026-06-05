@@ -127,6 +127,30 @@ setup() {
     assert_output --partial "only"
 }
 
+@test "NARROW_LANGUAGE_GLOB_INCLUDE_EXTRA appends to GLOB_INCLUDE" {
+    echo "hello" > "$WORK/file.yml"
+    echo "extra" > "$WORK/file.jsonc"
+    printf '%s\n' "extra" "hello" > "$WORK/.narrow-language-other.dic"
+    git -C "$WORK" add -A
+    git -C "$WORK" commit -q -m init
+
+    run bash -c "cd '$WORK' && NARROW_LANGUAGE_DICT=.narrow-language-other.dic NARROW_LANGUAGE_GLOB_INCLUDE='\.yml\$' NARROW_LANGUAGE_GLOB_INCLUDE_EXTRA='\.jsonc\$' bash '$SCRIPT'"
+    assert_success
+    refute_output --partial "removing"
+}
+
+@test "NARROW_LANGUAGE_GLOB_INCLUDE_EXTRA without GLOB_INCLUDE is ignored" {
+    echo "hello" > "$WORK/file.yml"
+    echo "extra" > "$WORK/file.jsonc"
+    printf '%s\n' "extra" "hello" > "$WORK/.narrow-language.dic"
+    git -C "$WORK" add -A
+    git -C "$WORK" commit -q -m init
+
+    run bash -c "cd '$WORK' && NARROW_LANGUAGE_GLOB_INCLUDE_EXTRA='\.jsonc\$' bash '$SCRIPT'"
+    assert_success
+    refute_output --partial "removing"
+}
+
 @test "stages dictionary after modification" {
     echo "hello world" > "$WORK/file.sh"
     printf '%s\n' "hello" "orphan" "world" > "$WORK/.narrow-language.dic"
