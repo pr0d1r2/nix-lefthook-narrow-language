@@ -102,7 +102,7 @@ pre-commit:
       timeout: 30s
       env:
         NARROW_LANGUAGE_DICT: .narrow-language-other.dic
-        NARROW_LANGUAGE_GLOB_INCLUDE: '\.(yml|yaml|toml|tcl|json|dic|envrc)$|justfile|Gemfile'
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.(yml|yaml|toml|tcl|jsonc|json|dic|envrc)$|justfile|Gemfile'
       run: lefthook-narrow-language-compact
     narrow-language-nix-freeze:
       priority: 1
