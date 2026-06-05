@@ -5,6 +5,7 @@ all
 alpha
 and
 any
+appends
 application
 are
 arguments
@@ -86,12 +87,14 @@ has
 hello
 hooks
 ifs
+ignored
 include
 init
 install
 installs
 instead
 into
+jsonc
 known
 language
 lefthook
