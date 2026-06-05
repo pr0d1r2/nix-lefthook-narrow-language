@@ -1,5 +1,7 @@
 # nix-lefthook-narrow-language
 
+[![CI](https://github.com/pr0d1r2/nix-lefthook-narrow-language/actions/workflows/ci.yml/badge.svg)](https://github.com/pr0d1r2/nix-lefthook-narrow-language/actions/workflows/ci.yml)
+
 Lefthook-compatible narrow-language vocabulary checks, packaged as a Nix flake.
 
 Enforces a controlled vocabulary per file type by checking words against per-language dictionary files. Unknown words fail the check. Includes compaction (removing unused dictionary entries) and synonym suggestion (via WordNet).
