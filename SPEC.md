@@ -53,8 +53,3 @@ Lefthook-compatible narrow-language vocabulary checks, packaged as Nix flake. En
 | T6 | x | lefthook-remote.yml: per-language hooks | C4,C7,C8,V4 |
 | T7 | x | Add `.jsonc` to other-compact GLOB_INCLUDE | B1,V6 |
 | T8 | x | Consumer glob override propagates to compact GLOB_INCLUDE | B2,V6 |
-
-## §B BUGS
-
-- B1: other-compact GLOB_INCLUDE missing `.jsonc` — compact strips words only found in `.jsonc` files (e.g. `.markdownlint.jsonc` comments). Check's glob includes `.jsonc` via consumer override, but compact's hardcoded `NARROW_LANGUAGE_GLOB_INCLUDE` does not scan `.jsonc`, so words added to dic get compacted out on next commit. Fix: add `jsonc` to GLOB_INCLUDE regex in `lefthook-remote.yml` line 105.
-- B2: Consumer cannot extend compact's GLOB_INCLUDE — lefthook remote env vars are not overridable by consumer `lefthook.yml`. Consumer can override check's `glob:` to add file types, but compact's `NARROW_LANGUAGE_GLOB_INCLUDE` stays hardcoded. Mismatch means check sees files that compact doesn't scan, causing words to be stripped. Fix: either document that consumers must also override compact env, or make compact derive its scope from the same glob as check.
