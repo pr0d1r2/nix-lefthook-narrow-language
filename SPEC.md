@@ -52,7 +52,7 @@ Lefthook-compatible narrow-language vocabulary checks, packaged as Nix flake. En
 | T5 | x | flake.nix: four packages + devShell | C1,C2,C3 |
 | T6 | x | lefthook-remote.yml: per-language hooks | C4,C7,C8,V4 |
 | T7 | x | Add `.jsonc` to other-compact GLOB_INCLUDE | B1,V6 |
-| T8 | | Consumer glob override propagates to compact GLOB_INCLUDE | B2,V6 |
+| T8 | x | Consumer glob override propagates to compact GLOB_INCLUDE | B2,V6 |
 
 ## §B BUGS
 

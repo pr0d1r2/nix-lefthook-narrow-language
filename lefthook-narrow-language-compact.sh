@@ -18,7 +18,11 @@ repo_words=$(
         grep -v "^${dict_basename}$" |
         grep -v '^flake\.lock$' |
         if [ -n "${NARROW_LANGUAGE_GLOB_INCLUDE:-}" ]; then
-            grep -E "$NARROW_LANGUAGE_GLOB_INCLUDE"
+            if [ -n "${NARROW_LANGUAGE_GLOB_INCLUDE_EXTRA:-}" ]; then
+                grep -E "${NARROW_LANGUAGE_GLOB_INCLUDE}|${NARROW_LANGUAGE_GLOB_INCLUDE_EXTRA}"
+            else
+                grep -E "$NARROW_LANGUAGE_GLOB_INCLUDE"
+            fi
         else
             cat
         fi |
