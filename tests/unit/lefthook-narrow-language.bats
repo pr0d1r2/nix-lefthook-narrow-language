@@ -100,3 +100,26 @@ setup() {
         bash "$SCRIPT" "$TMPDIR/sample.sh"
     assert_failure
 }
+
+@test "ignores 40-char SHA-1 hex strings" {
+    echo "uses: repo@311740298599dab21f2dc0f83f1d8c974215d197" > "$TMPDIR/ci.yml"
+    printf '%s\n' "repo" "uses" > "$DICT"
+    run env NARROW_LANGUAGE_DICT="$DICT" bash "$SCRIPT" "$TMPDIR/ci.yml"
+    assert_success
+}
+
+@test "ignores 64-char SHA-256 hex strings" {
+    echo "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" > "$TMPDIR/lock.nix"
+    printf '%s\n' "sha" > "$DICT"
+    run env NARROW_LANGUAGE_DICT="$DICT" bash "$SCRIPT" "$TMPDIR/lock.nix"
+    assert_success
+}
+
+@test "does not strip shorter hex-like words" {
+    echo "cafe babe dead" > "$TMPDIR/sample.sh"
+    run env NARROW_LANGUAGE_DICT="$DICT" bash "$SCRIPT" "$TMPDIR/sample.sh"
+    assert_failure
+    assert_output --partial "cafe"
+    assert_output --partial "babe"
+    assert_output --partial "dead"
+}

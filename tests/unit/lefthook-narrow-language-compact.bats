@@ -162,3 +162,15 @@ setup() {
     run git -C "$WORK" diff --cached --name-only
     assert_output --partial ".narrow-language.dic"
 }
+
+@test "SHA fragments from 40-char hex strings are not treated as repo words" {
+    echo "uses: repo@311740298599dab21f2dc0f83f1d8c974215d197" > "$WORK/ci.yml"
+    printf '%s\n' "dab" "repo" "uses" > "$WORK/.narrow-language.dic"
+    git -C "$WORK" add -A
+    git -C "$WORK" commit -q -m init
+
+    run bash -c "cd '$WORK' && bash '$SCRIPT'"
+    assert_success
+    assert_output --partial "removing 1 unused"
+    assert_output --partial "dab"
+}
