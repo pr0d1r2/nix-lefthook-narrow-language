@@ -11,7 +11,7 @@ Lefthook-compatible narrow-language vocabulary checks, packaged as Nix flake. En
 - C3: GNU coreutils, grep, sed, gawk — portable macOS + Linux
 - C4: Lefthook remote — consumers add `lefthook-remote.yml` to their `lefthook.yml`
 - C5: Per-language dictionaries: `.narrow-language-<lang>.dic` (one word per line, sorted)
-- C6: Word extraction: `grep -oE '[A-Za-z]+'`, camelCase split, lowercase, min 3 chars, must contain vowel
+- C6: Word extraction: strip 40–64 char hex strings (SHA-1/SHA-256), `grep -oE '[A-Za-z]+'`, camelCase split, lowercase, min 3 chars, must contain vowel
 - C7: Check runs on staged/push files only (priority 2)
 - C8: Compact runs on all tracked files scoped by `NARROW_LANGUAGE_GLOB_INCLUDE` (priority 1, before check)
 - C9: Freeze rejects new dictionary entries when `NARROW_LANGUAGE_FROZEN=true`
@@ -32,7 +32,7 @@ Lefthook-compatible narrow-language vocabulary checks, packaged as Nix flake. En
 
 ## §V INVARIANTS
 
-- V1: Check and compact use identical word extraction pipeline (grep → sed camelCase → lowercase → awk filter)
+- V1: Check and compact use identical word extraction pipeline (sed SHA strip → grep → sed camelCase → lowercase → awk filter)
 - V2: Compact never removes words that appear in files matching GLOB_INCLUDE
 - V3: Compact auto-stages modified dictionary (`git add`)
 - V4: Compact runs at priority 1 (before check at priority 2) — dictionary clean before validation
@@ -40,6 +40,7 @@ Lefthook-compatible narrow-language vocabulary checks, packaged as Nix flake. En
 - V6: GLOB_INCLUDE in compact must match same file extensions as check's glob/exclude for same language
 - V7: Freeze only blocks additions — removals (via compact) still allowed
 - V8: Word filter: length >= 3, must contain at least one vowel (a/e/i/o/u)
+- V9: 40–64 char lowercase hex strings (git SHA-1, SHA-256) stripped before word extraction — prevents fragments from polluting dictionaries
 
 ## §T TASKS
 

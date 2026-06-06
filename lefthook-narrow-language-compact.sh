@@ -27,7 +27,8 @@ repo_words=$(
             cat
         fi |
         while IFS= read -r f; do [ -f "$f" ] && printf '%s\n' "$f"; done |
-        xargs grep -ohE '[A-Za-z]+' 2>/dev/null |
+        xargs sed -E 's/[0-9a-f]{40,64}//g' 2>/dev/null |
+        grep -oE '[A-Za-z]+' |
         sed 's/\([a-z0-9]\)\([A-Z]\)/\1\n\2/g' |
         tr '[:upper:]' '[:lower:]' |
         awk 'length >= 3 && (/a/ || /e/ || /i/ || /o/ || /u/)' |

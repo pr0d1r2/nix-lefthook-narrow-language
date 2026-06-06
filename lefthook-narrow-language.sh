@@ -34,7 +34,8 @@ for file in "$@"; do
     [ "$_nl_skip" -eq 1 ] && continue
 
     words=$(
-        grep -oE '[A-Za-z]+' "$file" |
+        sed -E 's/[0-9a-f]{40,64}//g' "$file" |
+            grep -oE '[A-Za-z]+' |
             sed 's/\([a-z0-9]\)\([A-Z]\)/\1\n\2/g' |
             tr '[:upper:]' '[:lower:]' |
             awk 'length >= 3 && (/a/ || /e/ || /i/ || /o/ || /u/)' |
