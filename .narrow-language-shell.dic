@@ -15,17 +15,20 @@ available
 awk
 baseline
 basename
+babe
 bash
 bats
 bin
 bravo
 break
 but
+cafe
 cached
 camel
 case
 cat
 changes
+char
 characters
 charlie
 check
@@ -42,6 +45,8 @@ content
 continue
 count
 create
+dab
+dead
 deletions
 dev
 dic
@@ -74,6 +79,7 @@ files
 filters
 flake
 for
+fragments
 found
 freeze
 from
@@ -85,9 +91,11 @@ guard
 handles
 has
 hello
+hex
 hooks
 ifs
 ignored
+ignores
 include
 init
 install
@@ -100,6 +108,7 @@ language
 lefthook
 length
 lib
+like
 list
 load
 lock
@@ -163,6 +172,7 @@ separated
 set
 sets
 setup
+sha
 share
 shebang
 shell
@@ -179,6 +189,8 @@ splits
 splitting
 staged
 stages
+strings
+strip
 success
 such
 suggest
@@ -194,6 +206,7 @@ then
 tmpdir
 total
 touch
+treated
 true
 underscores
 unique
@@ -201,6 +214,7 @@ unknown
 unused
 upper
 user
+uses
 using
 usr
 when
