@@ -1,12 +1,12 @@
 # shellcheck shell=bash
-# Lefthook-compatible narrow-language-compact wrapper.
+# Lefthook-compatible narrow-language-add wrapper.
 # NOTE: sourced by writeShellApplication — no shebang or set needed.
 
 export HOME="${HOME:-/tmp}"
 
 DICT="${NARROW_LANGUAGE_DICT:-.narrow-language.dic}"
 if [ ! -f "$DICT" ]; then
-    exit 0
+    touch "$DICT"
 fi
 
 dict_basename=$(basename "$DICT")
@@ -37,16 +37,19 @@ repo_words=$(
         sort -u
 )
 
-unused=$(comm -23 <(sort "$DICT") <(echo "$repo_words"))
+new_words=$(comm -23 <(echo "$repo_words") <(sort "$DICT"))
 
-if [ -z "$unused" ]; then
+if [ -z "$new_words" ]; then
     exit 0
 fi
 
-count=$(echo "$unused" | wc -l | tr -d ' ')
-echo "narrow-language-compact: removing $count unused word(s) from $DICT:"
-while IFS= read -r w; do printf '  %s\n' "$w"; done <<<"$unused"
+count=$(echo "$new_words" | wc -l | tr -d ' ')
+echo "narrow-language-add: appending $count word(s) to $DICT:"
+while IFS= read -r w; do printf '  %s\n' "$w"; done <<<"$new_words"
 
-grep -vxF "$unused" "$DICT" >"${DICT}.tmp"
+{
+    cat "$DICT"
+    echo "$new_words"
+} | sort -u >"${DICT}.tmp"
 mv "${DICT}.tmp" "$DICT"
 git add "$DICT"

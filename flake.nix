@@ -13,6 +13,18 @@
       url = "github:pr0d1r2/nix-dev-shell-agentic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-lefthook-bats-unit = {
+      url = "github:pr0d1r2/nix-lefthook-bats-unit";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-lefthook-bats-parse = {
+      url = "github:pr0d1r2/nix-lefthook-bats-parse";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-lefthook-nix-flake-check = {
+      url = "github:pr0d1r2/nix-lefthook-nix-flake-check";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -39,6 +51,7 @@
           paths = [
             self.packages.${pkgs.stdenv.hostPlatform.system}.check
             self.packages.${pkgs.stdenv.hostPlatform.system}.compact
+            self.packages.${pkgs.stdenv.hostPlatform.system}.add
             self.packages.${pkgs.stdenv.hostPlatform.system}.suggest
             self.packages.${pkgs.stdenv.hostPlatform.system}.freeze
           ];
@@ -65,6 +78,18 @@
             git
           ];
           text = builtins.readFile ./lefthook-narrow-language-compact.sh;
+        };
+
+        add = pkgs.writeShellApplication {
+          name = "lefthook-narrow-language-add";
+          runtimeInputs = with pkgs; [
+            coreutils
+            gnugrep
+            gnused
+            gawk
+            git
+          ];
+          text = builtins.readFile ./lefthook-narrow-language-add.sh;
         };
 
         freeze = pkgs.writeShellApplication {
@@ -100,6 +125,7 @@
             ciPackages = [
               self.packages.${system}.check
               self.packages.${system}.compact
+              self.packages.${system}.add
               self.packages.${system}.freeze
               self.packages.${system}.suggest
               pkgs.wordnet

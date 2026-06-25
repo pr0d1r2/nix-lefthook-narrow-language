@@ -75,8 +75,16 @@ pre-commit:
         NARROW_LANGUAGE_DICT: .narrow-language-shell.dic
         NARROW_LANGUAGE_GLOB_INCLUDE: '\.(sh|bats)$'
       run: lefthook-narrow-language-compact
-    narrow-language-shell:
+    narrow-language-shell-add:
       priority: 2
+      timeout: 30s
+      glob: "*.{sh,bats}"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-shell.dic
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.(sh|bats)$'
+      run: lefthook-narrow-language-add
+    narrow-language-shell:
+      priority: 3
       timeout: 30s
       glob: "*.{sh,bats}"
       env:
