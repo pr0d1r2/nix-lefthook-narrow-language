@@ -36,7 +36,7 @@ Lefthook-compatible narrow-language vocabulary checks, packaged as Nix flake. En
 - V1: Check and compact use identical word extraction pipeline (sed SHA strip → grep → sed camelCase → lowercase → awk filter)
 - V2: Compact never removes words that appear in files matching GLOB_INCLUDE
 - V3: Compact and add auto-stage modified dictionary (`git add`)
-- V4: Compact runs at priority 1 (before check at priority 2) — dictionary clean before validation
+- V4: Compact runs at priority 1, add at priority 2, check at priority 3 — dictionary clean before add, add before validation
 - V5: Other-language category covers all file types not claimed by a specific language
 - V6: GLOB_INCLUDE in compact must match same file extensions as check's glob/exclude for same language
 - V7: Freeze only blocks additions — removals (via compact) still allowed

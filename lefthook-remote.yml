@@ -105,7 +105,7 @@ pre-commit:
         NARROW_LANGUAGE_GLOB_INCLUDE: '\.(yml|yaml|toml|tcl|jsonc|json|dic|envrc)$|justfile|Gemfile'
       run: lefthook-narrow-language-compact
     narrow-language-nix-add:
-      priority: 1
+      priority: 2
       timeout: 30s
       glob: "*.nix"
       env:
@@ -113,7 +113,7 @@ pre-commit:
         NARROW_LANGUAGE_GLOB_INCLUDE: '\.nix$'
       run: lefthook-narrow-language-add
     narrow-language-shell-add:
-      priority: 1
+      priority: 2
       timeout: 30s
       glob: "*.{sh,bats}"
       env:
@@ -121,7 +121,7 @@ pre-commit:
         NARROW_LANGUAGE_GLOB_INCLUDE: '\.(sh|bats)$'
       run: lefthook-narrow-language-add
     narrow-language-python-add:
-      priority: 1
+      priority: 2
       timeout: 30s
       glob: "*.py"
       env:
@@ -129,7 +129,7 @@ pre-commit:
         NARROW_LANGUAGE_GLOB_INCLUDE: '\.py$'
       run: lefthook-narrow-language-add
     narrow-language-markdown-add:
-      priority: 1
+      priority: 2
       timeout: 30s
       glob: "*.md"
       env:
@@ -137,7 +137,7 @@ pre-commit:
         NARROW_LANGUAGE_GLOB_INCLUDE: '\.md$'
       run: lefthook-narrow-language-add
     narrow-language-ruby-add:
-      priority: 1
+      priority: 2
       timeout: 30s
       glob: "*.rb"
       env:
@@ -145,7 +145,7 @@ pre-commit:
         NARROW_LANGUAGE_GLOB_INCLUDE: '\.rb$'
       run: lefthook-narrow-language-add
     narrow-language-javascript-add:
-      priority: 1
+      priority: 2
       timeout: 30s
       glob: "*.{js,jsx}"
       env:
@@ -153,7 +153,7 @@ pre-commit:
         NARROW_LANGUAGE_GLOB_INCLUDE: '\.(js|jsx)$'
       run: lefthook-narrow-language-add
     narrow-language-typescript-add:
-      priority: 1
+      priority: 2
       timeout: 30s
       glob: "*.{ts,tsx}"
       env:
@@ -161,7 +161,7 @@ pre-commit:
         NARROW_LANGUAGE_GLOB_INCLUDE: '\.(ts|tsx)$'
       run: lefthook-narrow-language-add
     narrow-language-erb-add:
-      priority: 1
+      priority: 2
       timeout: 30s
       glob: "*.erb"
       env:
@@ -169,7 +169,7 @@ pre-commit:
         NARROW_LANGUAGE_GLOB_INCLUDE: '\.erb$'
       run: lefthook-narrow-language-add
     narrow-language-hcl-add:
-      priority: 1
+      priority: 2
       timeout: 30s
       glob: "*.hcl"
       env:
@@ -177,7 +177,7 @@ pre-commit:
         NARROW_LANGUAGE_GLOB_INCLUDE: '\.hcl$'
       run: lefthook-narrow-language-add
     narrow-language-terraform-add:
-      priority: 1
+      priority: 2
       timeout: 30s
       glob: "*.tf"
       env:
@@ -185,7 +185,7 @@ pre-commit:
         NARROW_LANGUAGE_GLOB_INCLUDE: '\.tf$'
       run: lefthook-narrow-language-add
     narrow-language-css-add:
-      priority: 1
+      priority: 2
       timeout: 30s
       glob: "*.css"
       env:
@@ -193,7 +193,7 @@ pre-commit:
         NARROW_LANGUAGE_GLOB_INCLUDE: '\.css$'
       run: lefthook-narrow-language-add
     narrow-language-scss-add:
-      priority: 1
+      priority: 2
       timeout: 30s
       glob: "*.scss"
       env:
@@ -201,7 +201,7 @@ pre-commit:
         NARROW_LANGUAGE_GLOB_INCLUDE: '\.scss$'
       run: lefthook-narrow-language-add
     narrow-language-other-add:
-      priority: 1
+      priority: 2
       timeout: 30s
       env:
         NARROW_LANGUAGE_DICT: .narrow-language-other.dic
@@ -299,91 +299,91 @@ pre-commit:
         NARROW_LANGUAGE_DICT: .narrow-language-other.dic
       run: lefthook-narrow-language-freeze
     narrow-language-nix:
-      priority: 2
+      priority: 3
       timeout: 30s
       glob: "*.nix"
       env:
         NARROW_LANGUAGE_DICT: .narrow-language-nix.dic
       run: lefthook-narrow-language {staged_files}
     narrow-language-shell:
-      priority: 2
+      priority: 3
       timeout: 30s
       glob: "*.{sh,bats}"
       env:
         NARROW_LANGUAGE_DICT: .narrow-language-shell.dic
       run: lefthook-narrow-language {staged_files}
     narrow-language-python:
-      priority: 2
+      priority: 3
       timeout: 30s
       glob: "*.py"
       env:
         NARROW_LANGUAGE_DICT: .narrow-language-python.dic
       run: lefthook-narrow-language {staged_files}
     narrow-language-markdown:
-      priority: 2
+      priority: 3
       timeout: 30s
       glob: "*.md"
       env:
         NARROW_LANGUAGE_DICT: .narrow-language-markdown.dic
       run: lefthook-narrow-language {staged_files}
     narrow-language-ruby:
-      priority: 2
+      priority: 3
       timeout: 30s
       glob: "*.rb"
       env:
         NARROW_LANGUAGE_DICT: .narrow-language-ruby.dic
       run: lefthook-narrow-language {staged_files}
     narrow-language-javascript:
-      priority: 2
+      priority: 3
       timeout: 30s
       glob: "*.{js,jsx}"
       env:
         NARROW_LANGUAGE_DICT: .narrow-language-javascript.dic
       run: lefthook-narrow-language {staged_files}
     narrow-language-typescript:
-      priority: 2
+      priority: 3
       timeout: 30s
       glob: "*.{ts,tsx}"
       env:
         NARROW_LANGUAGE_DICT: .narrow-language-typescript.dic
       run: lefthook-narrow-language {staged_files}
     narrow-language-erb:
-      priority: 2
+      priority: 3
       timeout: 30s
       glob: "*.erb"
       env:
         NARROW_LANGUAGE_DICT: .narrow-language-erb.dic
       run: lefthook-narrow-language {staged_files}
     narrow-language-hcl:
-      priority: 2
+      priority: 3
       timeout: 30s
       glob: "*.hcl"
       env:
         NARROW_LANGUAGE_DICT: .narrow-language-hcl.dic
       run: lefthook-narrow-language {staged_files}
     narrow-language-terraform:
-      priority: 2
+      priority: 3
       timeout: 30s
       glob: "*.tf"
       env:
         NARROW_LANGUAGE_DICT: .narrow-language-terraform.dic
       run: lefthook-narrow-language {staged_files}
     narrow-language-css:
-      priority: 2
+      priority: 3
       timeout: 30s
       glob: "*.css"
       env:
         NARROW_LANGUAGE_DICT: .narrow-language-css.dic
       run: lefthook-narrow-language {staged_files}
     narrow-language-scss:
-      priority: 2
+      priority: 3
       timeout: 30s
       glob: "*.scss"
       env:
         NARROW_LANGUAGE_DICT: .narrow-language-scss.dic
       run: lefthook-narrow-language {staged_files}
     narrow-language-other:
-      priority: 2
+      priority: 3
       timeout: 30s
       exclude:
         - "*.nix"
