@@ -2,6 +2,8 @@
 # Lefthook-compatible narrow-language-compact wrapper.
 # NOTE: sourced by writeShellApplication — no shebang or set needed.
 
+export HOME="${HOME:-/tmp}"
+
 DICT="${NARROW_LANGUAGE_DICT:-.narrow-language.dic}"
 if [ ! -f "$DICT" ]; then
     exit 0

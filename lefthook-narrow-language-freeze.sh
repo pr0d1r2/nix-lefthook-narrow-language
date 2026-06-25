@@ -3,6 +3,8 @@
 # Fails if dictionary has new words added in staged changes.
 # NOTE: sourced by writeShellApplication — no shebang or set needed.
 
+export HOME="${HOME:-/tmp}"
+
 DICT="${NARROW_LANGUAGE_DICT:-.narrow-language.dic}"
 
 if [ "${NARROW_LANGUAGE_FROZEN:-}" != "true" ]; then
