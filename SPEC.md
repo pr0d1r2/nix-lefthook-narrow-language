@@ -6,7 +6,7 @@ Lefthook-compatible narrow-language vocabulary checks, packaged as Nix flake. En
 
 ## §C CONSTRAINTS
 
-- C1: Nix flake, pinned `nixos-25.11`, four packages (check, compact, freeze, suggest)
+- C1: Nix flake, pinned `nixos-25.11`, five packages (check, compact, add, freeze, suggest)
 - C2: Shell scripts sourced by `writeShellApplication` — no shebang, no `set` needed
 - C3: GNU coreutils, grep, sed, gawk — portable macOS + Linux
 - C4: Lefthook remote — consumers add `lefthook-remote.yml` to their `lefthook.yml`
@@ -22,6 +22,7 @@ Lefthook-compatible narrow-language vocabulary checks, packaged as Nix flake. En
 
 - I.check: `lefthook-narrow-language <files>` — report unknown words per file
 - I.compact: `lefthook-narrow-language-compact` — remove unused dic entries, `git add` result
+- I.add: `lefthook-narrow-language-add` — append unknown words to dic, `git add` result
 - I.freeze: `lefthook-narrow-language-freeze` — reject new dic entries when frozen
 - I.suggest: `lefthook-narrow-language-suggest <files>` — print synonyms for unknown words
 - I.remote: `lefthook-remote.yml` — pre-commit + pre-push hook definitions
@@ -34,7 +35,7 @@ Lefthook-compatible narrow-language vocabulary checks, packaged as Nix flake. En
 
 - V1: Check and compact use identical word extraction pipeline (sed SHA strip → grep → sed camelCase → lowercase → awk filter)
 - V2: Compact never removes words that appear in files matching GLOB_INCLUDE
-- V3: Compact auto-stages modified dictionary (`git add`)
+- V3: Compact and add auto-stage modified dictionary (`git add`)
 - V4: Compact runs at priority 1 (before check at priority 2) — dictionary clean before validation
 - V5: Other-language category covers all file types not claimed by a specific language
 - V6: GLOB_INCLUDE in compact must match same file extensions as check's glob/exclude for same language
@@ -54,3 +55,4 @@ Lefthook-compatible narrow-language vocabulary checks, packaged as Nix flake. En
 | T6 | x | lefthook-remote.yml: per-language hooks | C4,C7,C8,V4 |
 | T7 | x | Add `.jsonc` to other-compact GLOB_INCLUDE | B1,V6 |
 | T8 | x | Consumer glob override propagates to compact GLOB_INCLUDE | B2,V6 |
+| T9 | x | add script: append unknown words to dic | C8,V1,V3,I.add |
