@@ -13,6 +13,18 @@
       url = "github:pr0d1r2/nix-dev-shell-agentic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-lefthook-bats-unit = {
+      url = "github:pr0d1r2/nix-lefthook-bats-unit";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-lefthook-bats-parse = {
+      url = "github:pr0d1r2/nix-lefthook-bats-parse";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-lefthook-nix-flake-check = {
+      url = "github:pr0d1r2/nix-lefthook-nix-flake-check";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
