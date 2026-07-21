@@ -8,17 +8,17 @@ export HOME="${HOME:-/tmp}"
 DICT="${NARROW_LANGUAGE_DICT:-.narrow-language.dic}"
 
 if [ "${NARROW_LANGUAGE_FROZEN:-}" != "true" ]; then
-    exit 0
+  exit 0
 fi
 
 if [ ! -f "$DICT" ]; then
-    exit 0
+  exit 0
 fi
 
 added=$(git diff --cached -- "$DICT" | grep '^+[^+]' | sed 's/^+//' | sort -u)
 
 if [ -z "$added" ]; then
-    exit 0
+  exit 0
 fi
 
 count=$(echo "$added" | wc -l | tr -d ' ')

@@ -1,0 +1,38 @@
+# Repo-local checks carried through from vendored lefthook.yml (#126).
+---
+
+pre-commit:
+  commands:
+    narrow-language-shell:
+      priority: 3
+      timeout: 30s
+      glob: "*.{sh,bats}"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-shell.dic
+      run: lefthook-narrow-language {staged_files}
+
+    narrow-language-shell-add:
+      priority: 2
+      timeout: 30s
+      glob: "*.{sh,bats}"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-shell.dic
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.(sh|bats)$'
+      run: lefthook-narrow-language-add
+    narrow-language-shell-compact:
+      priority: 1
+      timeout: 30s
+      glob: "*.{sh,bats}"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-shell.dic
+        NARROW_LANGUAGE_GLOB_INCLUDE: '\.(sh|bats)$'
+      run: lefthook-narrow-language-compact
+
+pre-push:
+  commands:
+    narrow-language-shell:
+      timeout: 30s
+      glob: "*.{sh,bats}"
+      env:
+        NARROW_LANGUAGE_DICT: .narrow-language-shell.dic
+      run: lefthook-narrow-language {push_files}
