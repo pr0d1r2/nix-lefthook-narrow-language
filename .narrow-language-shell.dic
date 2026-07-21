@@ -12,6 +12,7 @@ apple
 application
 are
 arguments
+assemble
 assert
 auto
 available
@@ -44,6 +45,7 @@ compact
 compatible
 concise
 config
+confirm
 content
 continue
 count
@@ -52,11 +54,13 @@ creates
 dab
 dead
 deletions
+detect
 dev
 dic
 dict
 dictionary
 diff
+dir
 dirname
 disable
 does
@@ -168,6 +172,7 @@ repo
 reports
 require
 respects
+rev
 root
 ruby
 run
@@ -180,6 +185,7 @@ separate
 separated
 set
 sets
+setting
 setup
 sha
 share
