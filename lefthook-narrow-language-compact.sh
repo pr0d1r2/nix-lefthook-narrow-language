@@ -47,6 +47,9 @@ count=$(echo "$unused" | wc -l | tr -d ' ')
 echo "narrow-language-compact: removing $count unused word(s) from $DICT:"
 while IFS= read -r w; do printf '  %s\n' "$w"; done <<<"$unused"
 
-grep -vxF "$unused" "$DICT" >"${DICT}.tmp"
+# grep exits 1 when it keeps no lines (every word unused); under the
+# writeShellApplication `set -euo pipefail` wrapper that would abort before
+# the rewrite is staged, so tolerate the empty result and compact to empty.
+grep -vxF "$unused" "$DICT" >"${DICT}.tmp" || true
 mv "${DICT}.tmp" "$DICT"
 git add "$DICT"
