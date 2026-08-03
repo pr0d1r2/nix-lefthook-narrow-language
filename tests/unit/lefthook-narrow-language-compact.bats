@@ -174,3 +174,21 @@ setup() {
     assert_output --partial "removing 1 unused"
     assert_output --partial "dab"
 }
+
+# writeShellApplication wraps these scripts with `set -euo pipefail`; the other
+# tests use plain `bash`, which cannot observe errexit/pipefail regressions.
+# When every word is unused, `grep -vxF` matches nothing and exits 1 — under
+# errexit that must not abort before the dictionary is rewritten and staged.
+@test "compacts to empty dictionary under set -euo pipefail" {
+    echo "hello world" > "$WORK/file.sh"
+    printf '%s\n' "orphan1" "orphan2" > "$WORK/.narrow-language.dic"
+    git -C "$WORK" add -A
+    git -C "$WORK" commit -q -m init
+
+    run bash -c "cd '$WORK'; set -euo pipefail; source '$SCRIPT'"
+    assert_success
+    assert_output --partial "removing 2 unused"
+    [ -f "$WORK/.narrow-language.dic" ]
+    [ ! -s "$WORK/.narrow-language.dic" ]
+    [ ! -f "$WORK/.narrow-language.dic.tmp" ]
+}
