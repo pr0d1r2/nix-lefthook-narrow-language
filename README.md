@@ -46,7 +46,7 @@ touch .narrow-language-other.dic
 }
 ```
 
-Four packages available:
+Five packages available:
 
 - `check` — fail on unknown words (`lefthook-narrow-language`)
 - `compact` — remove unused dictionary entries (`lefthook-narrow-language-compact`)
