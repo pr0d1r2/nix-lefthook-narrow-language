@@ -10,14 +10,26 @@
     nixpkgs-lock.url = "github:pr0d1r2/nixpkgs-lock";
     nixpkgs.follows = "nixpkgs-lock/nixpkgs";
 
-    set-and-setting = {
-      url = "github:pr0d1r2/set-and-setting";
-      inputs = {
-        nixpkgs-lock.follows = "nixpkgs-lock";
-      };
-    };
-
+    set-and-setting.url = "github:pr0d1r2/set-and-setting";
   };
 
-  outputs = inputs: import ./nix/flake.nix inputs;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      set-and-setting,
+      ...
+    }:
+    set-and-setting.lib.mkConsumerFlake {
+      inherit self nixpkgs set-and-setting;
+      fragments = [
+        "base"
+        "nix"
+        "shell"
+        "ascii"
+        "markdown"
+        "yaml"
+      ];
+      src = ./.;
+    };
 }
