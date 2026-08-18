@@ -15,6 +15,7 @@ let
     f: nixpkgs.lib.genAttrs supportedSystems (system: f nixpkgs.legacyPackages.${system});
   fragments = [
     "base"
+    "actions"
     "nix"
     "shell"
     "ascii"
