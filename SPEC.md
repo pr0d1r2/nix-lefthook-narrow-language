@@ -56,3 +56,9 @@ Lefthook-compatible narrow-language vocabulary checks, packaged as Nix flake. En
 | T7 | x | Add `.jsonc` to other-compact GLOB_INCLUDE | B1,V6 |
 | T8 | x | Consumer glob override propagates to compact GLOB_INCLUDE | B2,V6 |
 | T9 | x | add script: append unknown words to dic | C8,V1,V3,I.add |
+
+## §B BUGS
+
+| id | date | cause | fix |
+|----|------|-------|-----|
+| B3 | 2026-08-18 | actionlint passed a scalar regex to nixpkgs `sourceByRegex`, which requires a list. | Adapt the argument at the flake boundary. |

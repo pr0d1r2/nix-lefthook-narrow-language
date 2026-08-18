@@ -24,7 +24,24 @@
       ...
     }:
     set-and-setting.lib.mkConsumerFlake {
-      inherit self nixpkgs set-and-setting;
+      inherit self set-and-setting;
+      # set-and-setting's actionlint check still calls sourceByRegex with a
+      # scalar regex, while the pinned nixpkgs API accepts a list of regexes.
+      nixpkgs = nixpkgs // {
+        legacyPackages =
+          nixpkgs.lib.genAttrs [ "aarch64-darwin" "x86_64-darwin" "x86_64-linux" "aarch64-linux" ]
+            (
+              system:
+              nixpkgs.legacyPackages.${system}
+              // {
+                lib = nixpkgs.lib // {
+                  sources = nixpkgs.lib.sources // {
+                    sourceByRegex = src: regex: nixpkgs.lib.sources.sourceByRegex src [ regex ];
+                  };
+                };
+              }
+            );
+      };
       fragments = [
         "base"
         "actions"

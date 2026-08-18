@@ -1,0 +1,39 @@
+exempt:
+  - class: ".github/workflows"
+    ticket: 319
+  - class: "bats"
+    ticket: 320
+  - class: "toml"
+    ticket: 321
+  - class: "in"
+    ticket: 322
+  - class: "dic"
+    ticket: 323
+  - class: "tcl"
+    ticket: 326
+  - class: "awk"
+    ticket: 327
+  - class: ".gitignore"
+    ticket: 328
+  - class: ".editorconfig"
+    ticket: 329
+  - class: ".gitattributes"
+    ticket: 330
+  - class: ".envrc"
+    ticket: 331
+  - class: "LICENSE"
+    ticket: 332
+  - class: "lock"
+    ticket: 335
+  - class: "txt"
+    ticket: 336
+  - class: "gemspec"
+    ticket: 337
+  - class: ".gitkeep"
+    ticket: 338
+  - class: "justfile"
+    ticket: 333
+  - class: ".nix-embedded-shell-allowlist"
+    ticket: 334
+  - class: "xml"
+    ticket: 325
