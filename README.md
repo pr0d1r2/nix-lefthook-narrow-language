@@ -52,13 +52,13 @@ touch .narrow-language-other.dic
 }
 ```
 
-Five packages available:
+Five package commands are available:
 
 - `check` — fail on unknown words (`lefthook-narrow-language`)
 - `compact` — remove unused dictionary entries (`lefthook-narrow-language-compact`)
 - `freeze` — reject new dictionary entries when frozen (`lefthook-narrow-language-freeze`)
 - `suggest` — suggest known synonyms for unknown words (`lefthook-narrow-language-suggest`)
-- `default` — all four combined
+- `default` — the `check` package (the command run by `nix run`)
 
 ### Environment variables
 

@@ -37,6 +37,9 @@ let
     inherit self set-and-setting fragments;
     nixpkgs = compatNixpkgs;
     extraPackages = import ./packages.nix;
+    extraChecks = pkgs: {
+      package = self.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    };
     src = ../.;
   };
   # The repo-local hooks (lefthook-repo.yml) run these; the standard's
