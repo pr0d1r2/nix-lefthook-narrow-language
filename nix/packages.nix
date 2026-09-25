@@ -59,14 +59,7 @@ rec {
       wordnet
     ]
   );
-  default = pkgs.symlinkJoin {
-    name = "lefthook-narrow-language-all";
-    paths = [
-      check
-      compact
-      add
-      freeze
-      suggest
-    ];
-  };
+  # Keep the conventional default package executable so `nix run` works.
+  # The other tools remain available through their named package outputs.
+  default = check;
 }
