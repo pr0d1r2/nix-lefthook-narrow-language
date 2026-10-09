@@ -275,11 +275,11 @@
     "nix-lefthook-markdownlint-agentic-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1787802790,
-        "narHash": "sha256-MXvUo63RuHIG7YWC7PWpngcbtjmHWxMqJeX9w25e01w=",
+        "lastModified": 1791233001,
+        "narHash": "sha256-zCz54hxF9MpwwTLyqcoAcTNiel3apsaV5TeqeYv+j5U=",
         "owner": "pr0d1r2",
         "repo": "nix-lefthook-markdownlint-agentic",
-        "rev": "0cff8b51c9be44be324ba6c3da246cfef47ca59a",
+        "rev": "5bb566ab9d8ee395f14433a43098e6e84979b023",
         "type": "github"
       },
       "original": {
