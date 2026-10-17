@@ -12,8 +12,8 @@ Lefthook-compatible narrow-language vocabulary checks, packaged as Nix flake. En
 - C4: Lefthook remote — consumers add `lefthook-remote.yml` to their `lefthook.yml`
 - C5: Per-language dictionaries: `.narrow-language-<lang>.dic` (one word per line, sorted)
 - C6: Word extraction: strip 40–64 char hex strings (SHA-1/SHA-256), `grep -oE '[A-Za-z]+'`, camelCase split, lowercase, min 3 chars, must contain vowel
-- C7: Check runs on staged/push files only (priority 2)
-- C8: Compact runs on all tracked files scoped by `NARROW_LANGUAGE_GLOB_INCLUDE` (priority 1, before check)
+- C7: Check runs on staged/push files only
+- C8: Compact runs on all tracked files scoped by `NARROW_LANGUAGE_GLOB_INCLUDE` (before add)
 - C9: Freeze rejects new dictionary entries when `NARROW_LANGUAGE_FROZEN=true`
 - C10: Suggest uses WordNet to find known synonyms for unknown words
 - C11: `NARROW_LANGUAGE_EXCLUDE_FILES` — colon-separated patterns to skip in check, compact, add
@@ -36,7 +36,7 @@ Lefthook-compatible narrow-language vocabulary checks, packaged as Nix flake. En
 - V1: Check and compact use identical word extraction pipeline (sed SHA strip → grep → sed camelCase → lowercase → awk filter)
 - V2: Compact never removes words that appear in files matching GLOB_INCLUDE
 - V3: Compact and add auto-stage modified dictionary (`git add`)
-- V4: Compact runs at priority 1, add at priority 2, check at priority 3 — dictionary clean before add, add before validation
+- V4: Pre-commit runs `compact && add && check` in one job per language — order holds in parallel mode
 - V5: Other-language category covers all file types not claimed by a specific language
 - V6: GLOB_INCLUDE in compact must match same file extensions as check's glob/exclude for same language
 - V7: Freeze only blocks additions — removals (via compact) still allowed
