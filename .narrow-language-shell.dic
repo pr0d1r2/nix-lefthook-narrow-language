@@ -34,11 +34,13 @@ camel
 cannot
 case
 cat
+chained
 changes
 char
 characters
 charlie
 check
+checks
 code
 colon
 comm
@@ -123,6 +125,7 @@ install
 installs
 instead
 into
+jobs
 jsonc
 keeps
 known
@@ -151,6 +154,7 @@ name
 narrow
 needed
 new
+next
 nix
 nixonly
 non
@@ -184,6 +188,7 @@ read
 refute
 regressions
 rejected
+remote
 removed
 removes
 removing
@@ -199,8 +204,11 @@ rewritten
 root
 ruby
 run
+runs
 sample
 scans
+scope
+scoped
 scopes
 script
 scripts
