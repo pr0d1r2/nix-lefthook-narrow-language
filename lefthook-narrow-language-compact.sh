@@ -11,6 +11,8 @@ fi
 
 dict_basename=$(basename "$DICT")
 
+IFS=':' read -ra _nl_exclude_patterns <<<"${NARROW_LANGUAGE_EXCLUDE_FILES:-}"
+
 repo_words=$(
   {
     git ls-files --cached
@@ -18,6 +20,7 @@ repo_words=$(
   } |
     sort -u |
     grep -v "^${dict_basename}$" |
+    grep -v '\(^\|/\)\.narrow-language[^/]*\.dic$' |
     grep -v '^flake\.lock$' |
     if [ -n "${NARROW_LANGUAGE_GLOB_INCLUDE:-}" ]; then
       if [ -n "${NARROW_LANGUAGE_GLOB_INCLUDE_EXTRA:-}" ]; then
@@ -28,7 +31,21 @@ repo_words=$(
     else
       cat
     fi |
-    while IFS= read -r f; do [ -f "$f" ] && printf '%s\n' "$f"; done |
+    while IFS= read -r f; do
+      [ -f "$f" ] || continue
+      _nl_skip=0
+      for _nl_pat in "${_nl_exclude_patterns[@]}"; do
+        [ -z "$_nl_pat" ] && continue
+        # shellcheck disable=SC2254
+        case "$f" in
+          $_nl_pat)
+            _nl_skip=1
+            break
+            ;;
+        esac
+      done
+      [ "$_nl_skip" -eq 1 ] || printf '%s\n' "$f"
+    done |
     xargs sed -E 's/[0-9a-f]{40,64}//g' 2>/dev/null |
     grep -oE '[A-Za-z]+' |
     sed 's/\([a-z0-9]\)\([A-Z]\)/\1\n\2/g' |
