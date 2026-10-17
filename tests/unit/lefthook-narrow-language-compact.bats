@@ -192,3 +192,35 @@ setup() {
     [ ! -s "$WORK/.narrow-language.dic" ]
     [ ! -f "$WORK/.narrow-language.dic.tmp" ]
 }
+
+@test "excludes other language dictionaries from word sources" {
+    echo "hello" > "$WORK/file.yml"
+    printf '%s\n' "hello" "nixonly" > "$WORK/.narrow-language-other.dic"
+    printf '%s\n' "nixonly" > "$WORK/.narrow-language-nix.dic"
+    git -C "$WORK" add -A
+    git -C "$WORK" commit -q -m init
+
+    run bash -c "cd '$WORK' && NARROW_LANGUAGE_DICT=.narrow-language-other.dic NARROW_LANGUAGE_GLOB_INCLUDE='\.(yml|dic)$' bash '$SCRIPT'"
+    assert_success
+    assert_output --partial "removing"
+    assert_output --partial "nixonly"
+
+    run cat "$WORK/.narrow-language-other.dic"
+    assert_output "hello"
+}
+
+@test "NARROW_LANGUAGE_EXCLUDE_FILES skips matching files" {
+    echo "hello" > "$WORK/file.nix"
+    mkdir -p "$WORK/gen"
+    echo "generated" > "$WORK/gen/gemset.nix"
+    printf '%s\n' "generated" "hello" > "$WORK/.narrow-language-nix.dic"
+    git -C "$WORK" add -A
+    git -C "$WORK" commit -q -m init
+
+    run bash -c "cd '$WORK' && NARROW_LANGUAGE_DICT=.narrow-language-nix.dic NARROW_LANGUAGE_GLOB_INCLUDE='\.nix$' NARROW_LANGUAGE_EXCLUDE_FILES='gen/*:*.lock' bash '$SCRIPT'"
+    assert_success
+    assert_output --partial "generated"
+
+    run cat "$WORK/.narrow-language-nix.dic"
+    assert_output "hello"
+}

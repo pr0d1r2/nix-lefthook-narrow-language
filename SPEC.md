@@ -16,7 +16,7 @@ Lefthook-compatible narrow-language vocabulary checks, packaged as Nix flake. En
 - C8: Compact runs on all tracked files scoped by `NARROW_LANGUAGE_GLOB_INCLUDE` (priority 1, before check)
 - C9: Freeze rejects new dictionary entries when `NARROW_LANGUAGE_FROZEN=true`
 - C10: Suggest uses WordNet to find known synonyms for unknown words
-- C11: `NARROW_LANGUAGE_EXCLUDE_FILES` — colon-separated patterns to skip in check
+- C11: `NARROW_LANGUAGE_EXCLUDE_FILES` — colon-separated patterns to skip in check, compact, add
 
 ## §I INTERFACES
 
@@ -29,7 +29,7 @@ Lefthook-compatible narrow-language vocabulary checks, packaged as Nix flake. En
 - I.env.DICT: `NARROW_LANGUAGE_DICT` — path to dictionary file
 - I.env.GLOB: `NARROW_LANGUAGE_GLOB_INCLUDE` — regex scoping compact file scan
 - I.env.FROZEN: `NARROW_LANGUAGE_FROZEN` — `true` to freeze dictionary
-- I.env.EXCLUDE: `NARROW_LANGUAGE_EXCLUDE_FILES` — colon-separated exclude patterns for check
+- I.env.EXCLUDE: `NARROW_LANGUAGE_EXCLUDE_FILES` — see C11
 
 ## §V INVARIANTS
 
@@ -42,6 +42,7 @@ Lefthook-compatible narrow-language vocabulary checks, packaged as Nix flake. En
 - V7: Freeze only blocks additions — removals (via compact) still allowed
 - V8: Word filter: length >= 3, must contain at least one vowel (a/e/i/o/u)
 - V9: 40–64 char lowercase hex strings (git SHA-1, SHA-256) stripped before word extraction — prevents fragments from polluting dictionaries
+- V10: Compact, add never read any `.narrow-language*.dic`
 
 ## §T TASKS
 
