@@ -9,7 +9,7 @@
 > what it may not, and what to check before trusting anything in this tree.
 <!-- hallucinogen:autonomy-disclaimer end -->
 
-[![CI](https://github.com/pr0d1r2/nix-lefthook-narrow-language/actions/workflows/ci.yml/badge.svg)](https://github.com/pr0d1r2/nix-lefthook-narrow-language/actions/workflows/ci.yml)
+[![CI](https://github.com/pr0d1r2/nix-lefthook-narrow-language/actions/workflows/ci.yml/badge.svg)](https://github.com/pr0d1r2/nix-lefthook-narrow-language/actions/workflows/ci.yml) [![NixOS 26.05](https://img.shields.io/badge/NixOS-26.05-blue.svg)](https://nixos.org/)
 
 Lefthook-compatible narrow-language vocabulary checks, packaged as a Nix flake.
 
