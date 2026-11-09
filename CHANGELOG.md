@@ -4,6 +4,7 @@ All notable changes to this project are documented here.
 
 ## Unreleased
 
+- Pin the CI guardrails workflow to a full commit SHA (`ci-lint-sha`).
 - Run `compact`, `add` and `check` as one pre-commit job per language
   (`narrow-language-<lang>`), so they no longer race under `parallel: true`.
   The `narrow-language-<lang>-compact` and `-add` pre-commit jobs are removed;
