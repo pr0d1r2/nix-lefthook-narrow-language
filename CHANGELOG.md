@@ -4,6 +4,10 @@ All notable changes to this project are documented here.
 
 ## Unreleased
 
+- Refresh `nixpkgs-lock` in `flake.lock` (nixpkgs `ac588ef`). ruby is still
+  3.4.11 (CVE-2026-97229) until pr0d1r2/nixpkgs-lock#94 lands; ruby is not a
+  direct dependency of this repo.
+
 - Pin the CI guardrails workflow to a full commit SHA (`ci-lint-sha`).
 - Run `compact`, `add` and `check` as one pre-commit job per language
   (`narrow-language-<lang>`), so they no longer race under `parallel: true`.
